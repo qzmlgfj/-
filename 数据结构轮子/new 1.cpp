@@ -1,16 +1,30 @@
-#include "Stack.h"
+#include "Queue.h"
 
 int main()
 {
-	Stack<int> stack;
+	Queue<char> queue;
+	char x;
 
-	for (int i = 0; i < 10; i++)
-		stack.Push(i);
+	while (1)
+	{
+		cin >> x;
 
-	for (int i = 0; i < 10; i++)
-		cout << stack.Pop() << "  ";
+		if (x == '\n')
+			continue;
 
-	cout << endl;
+		else
+		{
+			switch (x)
+			{
+			case '#':
+				queue.Dequeue(); break;
+			case '@':
+				queue.AllDequeue(); break;
+			default:
+				queue.EnQueue(x);
+			}
+		}
+	}
 
 	system("PAUSE");
 	return 0;
