@@ -1,30 +1,20 @@
-#include "Queue.h"
+#include "Tree.h"
+int result;
 
 int main()
 {
-	Queue<char> queue;
-	char x;
+	BinaryTree<char> tree;
 
-	while (1)
-	{
-		cin >> x;
+	tree.buildBinaryTree();
 
-		if (x == '\n')
-			continue;
+	tree.preTraversal(tree.root);
+	cout << endl;
 
-		else
-		{
-			switch (x)
-			{
-			case '#':
-				queue.Dequeue(); break;
-			case '@':
-				queue.AllDequeue(); break;
-			default:
-				queue.EnQueue(x);
-			}
-		}
-	}
+	tree.inTraversal(tree.root);
+	cout << endl;
+
+	tree.postTraversal(tree.root);
+	cout << endl;
 
 	system("PAUSE");
 	return 0;
