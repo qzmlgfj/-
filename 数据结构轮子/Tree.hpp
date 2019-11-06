@@ -37,11 +37,14 @@ public:
 
 	BinaryTree();
 	BinaryTree(T data);
-	BinaryTreeNode<T> *newNode(T data);	
+	BinaryTreeNode<T> *newNode(T data);
 	void addNode(BinaryTreeNode<T> *&p);
-	void buildBinaryTree();					//前序递归建立二叉树
-	void treeGraphView();					//一个可视化函数（目前仅适用单字符二叉树）
-	int getDepth(BinaryTreeNode<T> *p);		//求树深度
+	void buildBinaryTree();				//前序递归建立二叉树
+	void treeGraphView();				//一个可视化函数（目前仅适用单字符二叉树）
+	int getDepth(BinaryTreeNode<T> *p); //求树深度
+	void preTraversal(BinaryTreeNode<T> *p);
+	void inTraversal(BinaryTreeNode<T> *p);
+	void postTraversal(BinaryTreeNode<T> *p);
 };
 
 template <class T>
@@ -69,8 +72,8 @@ void BinaryTree<T>::addNode(BinaryTreeNode<T> *&p)
 {
 	T data;
 
-	cin >> data;		//本用例中使用cin输入数据，可根据情况修改不同数据源
-	if (data == '*') 	//标记空指针
+	cin >> data;	 //本用例中使用cin输入数据，可根据情况修改不同数据源
+	if (data == '*') //标记空指针
 		return;
 
 	p = newNode(data);
@@ -260,4 +263,44 @@ void drawLine(const char c, int x)
 {
 	for (int i = 1; i <= x; i++)
 		cout << c;
+}
+
+template <class T>
+void BinaryTree<T>::preTraversal(BinaryTreeNode<T> *p)
+{
+	if(!p)
+	return;
+
+	//对当前节点操作
+	cout<<p->data<<"  "<<endl;
+
+	preTraversal(p->leftChild);
+	preTraversal(p->rightChild);
+}
+
+template <class T>
+void BinaryTree<T>::inTraversal(BinaryTreeNode<T> *p)
+{
+	if(!p)
+	return;
+
+	inTraversal(p->leftChild);
+
+	//对当前节点操作
+	cout<<p->data<<"  "<<endl;
+
+	inTraversal(p->rightChild);
+}
+
+template <class T>
+void BinaryTree<T>::postTraversal(BinaryTreeNode<T> *p)
+{
+	if (!p)
+		return;
+	
+	postTraversal(p->leftChild);
+	postTraversal(p->rightChild);
+
+	//对当前节点操作
+	cout<<p->data<<"  "<<endl;
 }

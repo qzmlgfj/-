@@ -8,10 +8,10 @@ template <class T>
 class Stack
 {
 private:
-	int Capacity;
 	int TopOfStack;
 	T* Array;
 public:
+	int Capacity;
 	Stack();			//默认实例化
 	Stack(int n);		//实例化指定容量
 	int IsFull();
@@ -19,6 +19,8 @@ public:
 	void Push(T elem);
 	T Pop();
 	T Top();
+	T Bottom();
+	void Print();
 };
 
 template <class T>
@@ -82,4 +84,19 @@ template <class T>
 int Stack<T>::IsEmpty()
 {
 	return TopOfStack == EmptyTOS;
+}
+
+template <class T>
+void Stack<T>::Print()
+{
+	for (int i = 0; i < Capacity; i++)
+		cout << Array[i] << " ";
+	cout << endl;
+}
+
+template <class T>
+T Stack<T>::Bottom()
+{
+	if (!IsEmpty())
+		return Array[0];
 }

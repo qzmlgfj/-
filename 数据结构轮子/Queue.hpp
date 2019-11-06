@@ -51,20 +51,27 @@ public:
 		Size++;
 	}
 
-	void Dequeue()
+	T Dequeue()
 	{
 		if (IsEmpty())
 		{
 			cout << "The Queue is Empty" << endl;
-			return;
+			return NULL;
 		}
 
-		cout << Array[Front] << endl;
+		T data = Array[Front];
 
 		Front++;
 		Front = Front % Capacity;
 
 		Size--;
+
+		return data;
+	}
+
+	T GetFront()
+	{
+		return Array[Front];
 	}
 
 	void AllDequeue()				//全部出队
@@ -73,4 +80,3 @@ public:
 			Dequeue();
 	}
 };
-
