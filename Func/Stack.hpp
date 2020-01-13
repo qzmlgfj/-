@@ -1,5 +1,5 @@
 #pragma once
-#include<iostream>
+#include <iostream>
 #define EmptyTOS -1
 
 using namespace std;
@@ -8,28 +8,20 @@ template <class T>
 class Stack
 {
 private:
-	int TopOfStack;
-	T* Array;
+	int TopOfStack; //标记栈顶位置
+	T *Array;		//元素数组
 public:
 	int Capacity;
-	Stack();			//默认实例化
-	Stack(int n);		//实例化指定容量
-	int IsFull();
-	int IsEmpty();
+	Stack(int n = 10); //实例化指定容量，默认10
+	~Stack();
+	int isFull();
+	int isEmpty();
 	void Push(T elem);
 	T Pop();
-	T Top();
-	T Bottom();
-	void Print();
+	T getTop();	//返回栈顶元素
+	T getBottom(); //返回栈底元素
+	void Print();  //从底向上遍历输出
 };
-
-template <class T>
-Stack<T>::Stack()
-{
-	Capacity = 10;
-	Array = new T[Capacity];
-	TopOfStack = EmptyTOS;
-}
 
 template <class T>
 Stack<T>::Stack(int n)
@@ -40,11 +32,17 @@ Stack<T>::Stack(int n)
 }
 
 template <class T>
+Stack<T>::~Stack()
+{
+	delete[] Array;
+}
+
+template <class T>
 void Stack<T>::Push(T elem)
 {
-	if (IsFull())
+	if (isFull())
 	{
-		cout << "Full Stack" << endl;	//Error Warning
+		cout << "Full Stack" << endl; //Error Warning
 		return;
 	}
 	else
@@ -57,17 +55,17 @@ void Stack<T>::Push(T elem)
 template <class T>
 T Stack<T>::Pop()
 {
-	if (!IsEmpty())
+	if (!isEmpty())
 		return Array[TopOfStack--];
 
-	cout << "Empty Stack" << endl;		//Error Warning
+	cout << "Empty Stack" << endl; //Error Warning
 	return 0;
 }
 
 template <class T>
-T Stack<T>::Top()
+T Stack<T>::getTop()
 {
-	if (!IsEmpty())
+	if (!isEmpty())
 		return Array[TopOfStack];
 
 	cout << "Empty Stack" << endl;
@@ -75,13 +73,13 @@ T Stack<T>::Top()
 }
 
 template <class T>
-int Stack<T>::IsFull()
+int Stack<T>::isFull()
 {
 	return TopOfStack == Capacity - 1;
 }
 
 template <class T>
-int Stack<T>::IsEmpty()
+int Stack<T>::isEmpty()
 {
 	return TopOfStack == EmptyTOS;
 }
@@ -95,8 +93,11 @@ void Stack<T>::Print()
 }
 
 template <class T>
-T Stack<T>::Bottom()
+T Stack<T>::getBottom()
 {
-	if (!IsEmpty())
+	if (!isEmpty())
 		return Array[0];
+
+	cout << "Empty Stack" << endl;
+	return 0;
 }
