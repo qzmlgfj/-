@@ -30,7 +30,7 @@ public:
 };
 
 template <class T>
-Queue<T>::Queue(int n = 10)
+Queue<T>::Queue(int n)
 {
 	Capacity = n;
 	Size = 0;
